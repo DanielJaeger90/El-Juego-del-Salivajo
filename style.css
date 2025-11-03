@@ -1,0 +1,181 @@
+/* -------------------- RESET -------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  overflow-x: hidden;
+  animation: bgGlow 15s ease-in-out infinite;
+}
+
+@keyframes bgGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* -------------------- PANTALLAS -------------------- */
+.hidden {
+  display: none;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 2px 2px 8px #ff00c8;
+  animation: bounceTitle 2s infinite alternate;
+}
+
+@keyframes bounceTitle {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ffd700;
+  text-shadow: 1px 1px 5px #ff0000;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* -------------------- BOTONES -------------------- */
+button {
+  background: linear-gradient(45deg, #ff005c, #ff9a00);
+  border: none;
+  border-radius: 15px;
+  padding: 12px 25px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  background: linear-gradient(45deg, #ff00a0, #ffdd00);
+}
+
+/* -------------------- INPUT -------------------- */
+input[type="text"] {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 2px solid #ff00aa;
+  width: 220px;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #ffd700;
+  outline: none;
+  box-shadow: 0 0 15px #ffd700;
+}
+
+/* -------------------- LISTAS DE JUGADORES -------------------- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+ul li {
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+  padding: 12px 20px;
+  margin: 8px 0;
+  border-radius: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+ul li:hover {
+  transform: scale(1.05);
+}
+
+/* -------------------- MENSAJES Y CONTADORES -------------------- */
+#waiting-text {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #00ffea;
+  text-shadow: 1px 1px 10px #00ffea;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* -------------------- RANKING -------------------- */
+#ranking {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#ranking li {
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  color: #fff;
+}
+
+/* -------------------- FUEGOS ARTIFICIALES -------------------- */
+.firework {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: explode 0.8s ease-out forwards;
+}
+
+@keyframes explode {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(5); opacity: 0; }
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 600px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.5rem; }
+  button { font-size: 16px; padding: 10px 20px; }
+  input[type="text"] { width: 160px; padding: 10px; }
+  ul li { font-size: 14px; padding: 10px; }
+  #ranking li { font-size: 14px; padding: 8px; }
+}

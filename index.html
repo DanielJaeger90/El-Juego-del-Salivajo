@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Juego del Salivajo</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estilos básicos para ejemplo */
+    .hidden { display: none; }
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { margin: 5px; padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+  <!-- Pantalla de selección de rol -->
+  <div id="screen-selection">
+    <h1>El Juego del Salivajo</h1>
+    <p>Selecciona tu rol:</p>
+    <button id="master-btn">Master (Host)</button>
+    <button id="player-btn">Jugador</button>
+  </div>
+
+  <!-- Pantalla Master -->
+  <div id="master-screen" class="hidden">
+    <h2>Master</h2>
+    <ul id="players-list"></ul>
+    <button id="start-game-btn">Iniciar Juego</button>
+    <button id="next-round-btn">Siguiente Ronda</button>
+  </div>
+
+  <!-- Pantalla Jugador -->
+  <div id="player-screen" class="hidden">
+    <h2>Jugador</h2>
+    <input type="text" id="player-name" placeholder="Tu nombre">
+    <button id="join-game-btn">Unirse al Juego</button>
+    <p id="waiting-text"></p>
+  </div>
+
+  <!-- Firebase CDN -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js"></script>
+
+  <!-- Tu app.js (tipo módulo para usar utils.js) -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
