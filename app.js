@@ -1,5 +1,5 @@
 // app.js
-
+import { initializeApp } from "firebase/app";
 // ------------------ Inicializar Firebase ------------------
 const firebaseConfig = {
   apiKey: "AIzaSyB1u_yTTEuc2oWM3tFcyx6V0BruL_ykTfY",
@@ -200,3 +200,4 @@ function terminarJuego() {
   alert("¡Fin del juego! Mostrando fuegos artificiales y el ganador...");
   lanzarFuegosArtificiales();
 }
+
