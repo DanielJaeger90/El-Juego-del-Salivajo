@@ -11,7 +11,7 @@ const firebaseConfig = {
   appId: "1:725780665421:web:5d78b77c5fccfc8951b804"
 };
 
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 const db = firebase.database();
 
 // ------------------ Variables y DOM ------------------
@@ -218,3 +218,4 @@ function terminarJuego() {
   alert("¡Fin del juego! Mostrando fuegos artificiales y el ganador...");
   lanzarFuegosArtificiales();
 }
+
