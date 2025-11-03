@@ -11,7 +11,7 @@ const firebaseConfig = {
   appId: "1:725780665421:web:5d78b77c5fccfc8951b804"
 };
 
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 // ------------------ Variables y DOM ------------------
@@ -25,22 +25,14 @@ const startGameBtn = document.getElementById('start-game-btn');
 const nextRoundBtn = document.getElementById('next-round-btn');
 const playerNameInput = document.getElementById('player-name');
 const playersList = document.getElementById('players-list');
-
-const contadorDiv = document.createElement('div');
-contadorDiv.id = 'contador';
-contadorDiv.style.fontSize = '2rem';
-contadorDiv.style.color = '#00ffea';
-contadorDiv.style.textAlign = 'center';
-contadorDiv.style.margin = '10px 0';
-document.body.appendChild(contadorDiv);
+const contadorDiv = document.getElementById('contador');
+const rankingUl = document.getElementById('ranking');
 
 let playerId = null;
 let isMaster = false;
 const pruebas = ["QUIZ", "MIMIKA", "TRAIDOR", "AL_RITMO_DE_LA_NOCHE"];
 
-// ------------------ Funciones ------------------
-
-// Selección de rol
+// ------------------ Rol Master / Jugador ------------------
 masterBtn.onclick = () => {
   screenSelection.classList.add('hidden');
   masterScreen.classList.remove('hidden');
@@ -53,7 +45,7 @@ playerBtn.onclick = () => {
   playerScreen.classList.remove('hidden');
 };
 
-// Unirse al juego
+// ------------------ Unirse al juego ------------------
 joinGameBtn.onclick = () => {
   const name = playerNameInput.value.trim();
   if (!name) return alert("Ingresa tu nombre");
@@ -62,7 +54,7 @@ joinGameBtn.onclick = () => {
   playerScreen.querySelector('#waiting-text').textContent = 'Esperando al Master...';
 };
 
-// Escuchar jugadores
+// ------------------ Escuchar jugadores ------------------
 function listenPlayers() {
   db.ref('players').on('value', snapshot => {
     playersList.innerHTML = '';
@@ -75,13 +67,13 @@ function listenPlayers() {
   });
 }
 
-// Inicio del juego
+// ------------------ Inicio del juego ------------------
 startGameBtn.onclick = () => {
   db.ref('game').update({ started: true, round: 1 });
   mostrarPrueba();
 };
 
-// Siguiente ronda
+// ------------------ Siguiente ronda ------------------
 nextRoundBtn.onclick = () => {
   db.ref('game/round').once('value', snapshot => {
     let ronda = snapshot.val() || 1;
@@ -94,7 +86,7 @@ nextRoundBtn.onclick = () => {
   });
 };
 
-// Ruleta de pruebas
+// ------------------ Ruleta de pruebas ------------------
 function mostrarPrueba() {
   db.ref('game/round').once('value', snapshot => {
     const ronda = snapshot.val() || 1;
@@ -140,7 +132,6 @@ function iniciarTraidor() {
       const jugadores = [];
       snapshot.forEach(child => jugadores.push({ id: child.key, ...child.val() }));
       const traidores = seleccionarTraidores(jugadores);
-      console.log("Traidores seleccionados:", traidores);
       alert(`Traidores: ${traidores.map(t => t.name).join(', ')}`);
     });
   }
@@ -178,7 +169,6 @@ function sumarPuntos(playerId, puntos) {
 
 // Actualizar ranking Master
 function actualizarRanking() {
-  const rankingUl = document.getElementById('ranking') || createRankingList();
   db.ref('players').once('value', snapshot => {
     const jugadores = [];
     snapshot.forEach(child => jugadores.push({ name: child.val().name, points: child.val().points }));
@@ -190,14 +180,6 @@ function actualizarRanking() {
       rankingUl.appendChild(li);
     });
   });
-}
-
-// Crear ranking si no existe
-function createRankingList() {
-  const ul = document.createElement('ul');
-  ul.id = 'ranking';
-  masterScreen.appendChild(ul);
-  return ul;
 }
 
 // ------------------ Fuegos artificiales ------------------
@@ -218,4 +200,3 @@ function terminarJuego() {
   alert("¡Fin del juego! Mostrando fuegos artificiales y el ganador...");
   lanzarFuegosArtificiales();
 }
-
