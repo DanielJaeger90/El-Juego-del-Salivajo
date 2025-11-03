@@ -1,5 +1,4 @@
 // app.js
-import { elegirAleatorio, ordenarRanking, seleccionarTraidores } from './utils.js';
 
 // ------------------ Inicializar Firebase ------------------
 const firebaseConfig = {
@@ -11,6 +10,7 @@ const firebaseConfig = {
   messagingSenderId: "725780665421",
   appId: "1:725780665421:web:5d78b77c5fccfc8951b804"
 };
+
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
@@ -25,6 +25,7 @@ const startGameBtn = document.getElementById('start-game-btn');
 const nextRoundBtn = document.getElementById('next-round-btn');
 const playerNameInput = document.getElementById('player-name');
 const playersList = document.getElementById('players-list');
+
 const contadorDiv = document.createElement('div');
 contadorDiv.id = 'contador';
 contadorDiv.style.fontSize = '2rem';
@@ -39,7 +40,7 @@ const pruebas = ["QUIZ", "MIMIKA", "TRAIDOR", "AL_RITMO_DE_LA_NOCHE"];
 
 // ------------------ Funciones ------------------
 
-// Rol Master / Jugador
+// Selección de rol
 masterBtn.onclick = () => {
   screenSelection.classList.add('hidden');
   masterScreen.classList.remove('hidden');
